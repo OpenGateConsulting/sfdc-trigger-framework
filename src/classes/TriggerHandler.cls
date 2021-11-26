@@ -1,6 +1,6 @@
 public virtual class TriggerHandler {
 
-  // static map of handlername, times run() was invoked
+  // static map of handler name, times run() was invoked
   private static Map<String, LoopCount> loopCountMap;
   private static Set<String> bypassedHandlers;
 
@@ -17,7 +17,7 @@ public virtual class TriggerHandler {
     loopCountMap = new Map<String, LoopCount>();
     bypassedHandlers = new Set<String>();
   }
-  
+
   // constructor
   public TriggerHandler() {
     this.setTriggerContext();
@@ -96,7 +96,7 @@ public virtual class TriggerHandler {
   }
 
   /***************************************
-   * private instancemethods
+   * private instance methods
    ***************************************/
 
   @TestVisible
@@ -112,7 +112,7 @@ public virtual class TriggerHandler {
     } else {
       this.isTriggerExecuting = true;
     }
-    
+
     if((Trigger.isExecuting && Trigger.isBefore && Trigger.isInsert) ||
         (ctx != null && ctx == 'before insert')) {
       this.context = TriggerContext.BEFORE_INSERT;
