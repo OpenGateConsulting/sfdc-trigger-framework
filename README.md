@@ -34,6 +34,11 @@ In your trigger handler, to add logic to any of the trigger contexts, you only n
 ```java
 public class OpportunityTriggerHandler extends TriggerHandler {
   
+  /* Optional Constructor - better performance */
+  public OpportunityTriggerHandler(){
+    super('OpportunityTriggerHandler');
+  }
+  
   public override void beforeUpdate() {
     for(Opportunity o : (List<Opportunity>) Trigger.new) {
       // do something
@@ -52,7 +57,9 @@ public class OpportunityTriggerHandler extends TriggerHandler {
 
   private Map<Id, Opportunity> newOppMap;
 
-  public OpportunityTriggerHandler() {
+  /* Optional Constructor - better performance */
+  public OpportunityTriggerHandler(){
+    super('OpportunityTriggerHandler');
     this.newOppMap = (Map<Id, Opportunity>) Trigger.newMap;
   }
   
@@ -80,7 +87,9 @@ To prevent recursion, you can set a max loop count for Trigger Handler. If this 
 ```java
 public class OpportunityTriggerHandler extends TriggerHandler {
 
-  public OpportunityTriggerHandler() {
+  /* Optional Constructor - better performance */
+  public OpportunityTriggerHandler(){
+    super('OpportunityTriggerHandler');
     this.setMaxLoopCount(1);
   }
   
@@ -98,6 +107,11 @@ What if you want to tell other trigger handlers to halt execution? That's easy w
 
 ```java
 public class OpportunityTriggerHandler extends TriggerHandler {
+  
+  /* Optional Constructor - better performance */
+  public OpportunityTriggerHandler(){
+    super('OpportunityTriggerHandler');
+  }
   
   public override void afterUpdate() {
     List<Opportunity> opps = [SELECT Id, AccountId FROM Opportunity WHERE Id IN :Trigger.newMap.keySet()];

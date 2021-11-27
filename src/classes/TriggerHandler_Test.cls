@@ -202,6 +202,20 @@ private class TriggerHandler_Test {
         h.afterUndelete();
     }
 
+    // test constructor passing in trigger handler
+
+    @IsTest
+    static void testConstructorWithTriggerHandler() {
+        TriggerHandler withTriggerHandler = new TriggerHandler('testHandler');
+        withTriggerHandler.beforeInsert();
+        withTriggerHandler.beforeUpdate();
+        withTriggerHandler.beforeDelete();
+        withTriggerHandler.afterInsert();
+        withTriggerHandler.afterUpdate();
+        withTriggerHandler.afterDelete();
+        withTriggerHandler.afterUndelete();
+    }
+
     /***************************************
      * testing utilities
      ***************************************/
