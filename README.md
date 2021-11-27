@@ -80,6 +80,37 @@ trigger OpportunityTrigger on Opportunity (before insert, before update) {
 
 ## Cool Stuff
 
+### Check Records That Have Been Processed
+
+To prevent re-running trigger logic on the same record, you can call a static method to get record Ids that HAVE NOT been processed by your logic.
+
+```java
+public class OpportunityTriggerHandler extends TriggerHandler {
+    private Map<Id, Opportunity> oldOpportunityMap;
+    private Map<Id, Opportunity> newOpportunityMap;
+    private List<Opportunity> newOpportunityList;
+    private List<Opportunity> oldOpportunityList;
+    
+  /* Optional Constructor - better performance */
+  public OpportunityTriggerHandler(){
+    super('OpportunityTriggerHandler');
+    this.oldOpportunityMap = (Map<Id, Opportunity>) Trigger.oldMap;
+    this.newOpportunityMap = (Map<Id, Opportunity>) Trigger.newMap;
+    this.oldOpportunityList = (List<Opportunity>) Trigger.old;
+    this.newOpportunityList = (List<Opportunity>) Trigger.new;
+  }
+  
+  public override void afterUpdate() {
+    for (Id oppId : getIdsThatHaveNotBeenProcessed('opportunityAfterUpdate', newOpportunityMap.values())) {
+        //this will now iterate over the ids that have not been processed
+        //if this trigger is called again, the static map in the trigger handler 
+        //will not return any ids already added from the previous call        
+    }
+  }
+
+}
+```
+
 ### Max Loop Count
 
 To prevent recursion, you can set a max loop count for Trigger Handler. If this max is exceeded, and exception will be thrown. A great use case is when you want to ensure that your trigger runs once and only once within a single execution. Example:

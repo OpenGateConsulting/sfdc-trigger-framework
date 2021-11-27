@@ -216,6 +216,25 @@ private class TriggerHandler_Test {
         withTriggerHandler.afterUndelete();
     }
 
+    // test get ids that have not been processed
+
+    @IsTest
+    static void testGetIdsThatHaveNotBeenProcessed() {
+        Account account = new Account(
+                Name = 'Test'
+        );
+        insert account;
+        Test.startTest();
+        {
+            List<Account> accounts = [SELECT Id, Name FROM Account];
+            Set<Id> notBeenProcessed = TriggerHandler.getIdsThatHaveNotBeenProcessed('testHandler', accounts);
+            System.assertEquals(1, notBeenProcessed.size(), 'There should be 1 id not processed');
+            Set<Id> haveBeenProcessed = TriggerHandler.getIdsThatHaveNotBeenProcessed('testHandler', accounts);
+            System.assertEquals(0, haveBeenProcessed.size(), 'There should be 0 ids - all have been processed');
+        }
+        Test.stopTest();
+    }
+
     /***************************************
      * testing utilities
      ***************************************/

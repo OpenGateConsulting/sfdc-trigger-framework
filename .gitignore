@@ -2,3 +2,10 @@
 config
 node_modules
 npm-debug.log
+/.idea/.gitignore
+/.idea/git_toolbox_prj.xml
+/.idea/illuminatedCloud.xml
+/.idea/modules.xml
+/.idea/sfdc-trigger-framework.iml
+/.idea/vcs.xml
+/IlluminatedCloud/billdevorgsfdx/OfflineSymbolTable.zip

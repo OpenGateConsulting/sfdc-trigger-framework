@@ -2,7 +2,8 @@ public virtual class TriggerHandler {
 
     // private variable to hold handler name
     private String handlerName { get; set; }
-
+    // static map of record ids, used to prevent re-running logic on same record
+    private static Map<String, Set<Id>> recordIdMap = new Map<String, Set<Id>>();
     // static map of handler name, times run() was invoked
     private static Map<String, LoopCount> loopCountMap;
     private static Set<String> bypassedHandlers;
@@ -106,6 +107,20 @@ public virtual class TriggerHandler {
 
     public static void clearAllBypasses() {
         TriggerHandler.bypassedHandlers.clear();
+    }
+
+    public static Set<Id> getIdsThatHaveNotBeenProcessed(String triggerContext, List<SObject> sObjects) {
+        Set<Id> idsNotProcessed = new Set<Id>();
+        if (!recordIdMap.containsKey(triggerContext)) {
+            recordIdMap.put(triggerContext, new Set<Id>());
+        }
+        for (SObject sObj : sObjects) {
+            if (!recordIdMap.get(triggerContext).contains(sObj.Id)) {
+                idsNotProcessed.add(sObj.Id);
+                recordIdMap.get(triggerContext).add(sObj.Id);
+            }
+        }
+        return idsNotProcessed;
     }
 
     /***************************************
