@@ -15,9 +15,6 @@ The base class also provides a secondary role as a supervisor for Trigger execut
 
 But the most important part of this framework is that it's minimal and simple to use. 
 
-**Deploy to SFDX Scratch Org:**
-[![Deploy](https://deploy-to-sfdx.com/dist/assets/images/DeployToSFDX.svg)](https://deploy-to-sfdx.com)
-
 **Deploy to Salesforce Org:**
 [![Deploy](https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=kevinohara80&repo=sfdc-trigger-framework&ref=master)
 
