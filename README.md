@@ -193,3 +193,48 @@ Here are all of the methods that you can override. All of the context possibilit
 * `afterUpdate()`
 * `afterDelete()`
 * `afterUndelete()`
+
+## Sample Trigger and Trigger Handler
+
+Use these as a starting point for your trigger. Remove any trigger contexts or override methods not needed.
+
+### Trigger Example
+```java
+trigger OpportunityTrigger on Opportunity (before insert, before update, before delete, before undelete, after insert, after update, after delete, after undelete ) {
+   new OpportunityTriggerHandler().run();
+}
+```
+### Trigger Handler Example
+```java
+public class OpportunityTriggerHandler extends TriggerHandler {
+  private Map<Id, Opportunity> oldOpportunityMap;
+  private Map<Id, Opportunity> newOpportunityMap;
+  private List<Opportunity> newOpportunityList;
+  private List<Opportunity> oldOpportunityList;
+    
+  public OpportunityTriggerHandler(){
+    super('OpportunityTriggerHandler');
+    this.oldOpportunityMap = (Map<Id, Opportunity>) Trigger.oldMap;
+    this.newOpportunityMap = (Map<Id, Opportunity>) Trigger.newMap;
+    this.oldOpportunityList = (List<Opportunity>) Trigger.old;
+    this.newOpportunityList = (List<Opportunity>) Trigger.new;
+  }
+  public override void beforeInsert() {
+  }
+  public override void beforeUpdate() {
+  }
+  public override void beforeDelete() {
+  }
+  public override void beforeUndelete() {
+  }
+  public override void afterInsert() {
+  }
+  public override void afterUpdate() {
+  }
+  public override void afterDelete() {
+  }
+  public override void afterUndelete() {
+  }
+
+}
+```
