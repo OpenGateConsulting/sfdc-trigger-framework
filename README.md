@@ -222,8 +222,6 @@ public class OpportunityTriggerHandler extends TriggerHandler {
   }
   public override void beforeDelete() {
   }
-  public override void beforeUndelete() {
-  }
   public override void afterInsert() {
   }
   public override void afterUpdate() {
