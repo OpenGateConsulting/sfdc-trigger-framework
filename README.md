@@ -16,7 +16,7 @@ The base class also provides a secondary role as a supervisor for Trigger execut
 But the most important part of this framework is that it's minimal and simple to use. 
 
 **Deploy to Salesforce Org:**
-[![Deploy](https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=wmccullough-opengate&repo=sfdc-trigger-framework&ref=master)
+[![Deploy](https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png)](https://githubsfdeploy.herokuapp.com/?owner=OpenGateConsulting&repo=sfdc-trigger-framework&ref=master)
 
 ## Usage
 
